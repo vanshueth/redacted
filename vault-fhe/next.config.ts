@@ -2,14 +2,16 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "export",
-  experimental: {
-    optimizePackageImports: [
-      "framer-motion",
-      "@rainbow-me/rainbowkit",
-      "wagmi",
-      "viem",
-      "@walletconnect/ethereum-provider",
-    ],
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      porto: false,
+      "porto/internal": false,
+      accounts: false,
+      "@coinbase/wallet-sdk": false,
+      "@metamask/connect-evm": false,
+    };
+    return config;
   },
 };
 
