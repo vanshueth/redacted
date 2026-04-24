@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { useAccount } from "wagmi";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Search, RefreshCw, Lock } from "lucide-react";
@@ -14,6 +15,7 @@ import { ScrollingTicker } from "@/components/ui/ScrollingTicker";
 import { useVaultStore } from "@/lib/store";
 import { useCofhe } from "@/hooks/useCofhe";
 import { useHydrateVault } from "@/hooks/useHydrateVault";
+import { SettingsPanel } from "@/components/vault/SettingsPanel";
 
 const TICKER = [
   "VAULT ACTIVE",
@@ -29,18 +31,43 @@ const TICKER = [
 
 const FILTER_TABS = ["All", "Passwords", "Seeds", "Notes", "Keys"] as const;
 
+const URL_TAB_MAP: Record<string, (typeof FILTER_TABS)[number]> = {
+  notes: "Notes",
+  seeds: "Seeds",
+  shared: "All",
+};
+
+const TYPE_FILTER: Record<(typeof FILTER_TABS)[number], string | null> = {
+  All: null,
+  Passwords: "Password",
+  Seeds: "Seed Phrase",
+  Notes: "Note",
+  Keys: "Private Key",
+};
+
 export default function VaultPage() {
   const { isConnected } = useAccount();
   const { isCofheConnected } = useCofhe();
   const { entries, openAddModal } = useVaultStore();
   const [search, setSearch] = useState("");
-  const [activeTab, setActiveTab] = useState<(typeof FILTER_TABS)[number]>("All");
+  const searchParams = useSearchParams();
+  const urlTab = searchParams.get("tab");
+  const [activeTab, setActiveTab] = useState<(typeof FILTER_TABS)[number]>(
+    urlTab ? (URL_TAB_MAP[urlTab] ?? "All") : "All"
+  );
+
+  useEffect(() => {
+    setActiveTab(urlTab ? (URL_TAB_MAP[urlTab] ?? "All") : "All");
+  }, [urlTab]);
 
   useHydrateVault();
 
-  const filtered = entries.filter((e) =>
-    e.label.toLowerCase().includes(search.toLowerCase())
-  );
+  const filtered = entries.filter((e) => {
+    const matchesSearch = e.label.toLowerCase().includes(search.toLowerCase());
+    const typeFilter = TYPE_FILTER[activeTab];
+    const matchesType = typeFilter === null || e.notes === typeFilter;
+    return matchesSearch && matchesType;
+  });
 
   /* ── Not connected wall ── */
   if (!isConnected) {
@@ -89,6 +116,9 @@ export default function VaultPage() {
 
         <div className="flex-1 px-6 py-8 max-w-5xl w-full mx-auto">
           <LowBalanceBanner />
+
+          {urlTab === "settings" ? <SettingsPanel /> : (
+          <>
 
           {/* Top bar */}
           <div className="flex flex-wrap items-center gap-4 mb-8">
@@ -194,6 +224,8 @@ export default function VaultPage() {
                 ))}
               </AnimatePresence>
             </div>
+          )}
+          </>
           )}
         </div>
       </div>

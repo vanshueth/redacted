@@ -615,15 +615,15 @@ export default function Home() {
             <span className="inline-block bg-black text-white font-mono text-xs font-bold tracking-[0.12em] px-2.5 py-1 uppercase">
               [REDACTED]
             </span>
-            <span className="font-mono text-xs text-[#4A5A72]">© 2025</span>
+            <span className="font-mono text-xs text-[#4A5A72]">© 2026</span>
           </div>
           <div className="flex flex-wrap items-center gap-3 justify-center">
             <span className="font-mono text-xs text-[#4A5A72]">Powered by</span>
             <TechBadge label="FHENIX" color="purple" />
             <TechBadge label="coFHE" color="purple" />
-            <span className="font-mono text-xs text-[#4A5A72]">·</span>
-            <span className="font-mono text-xs text-[#4A5A72]">Built by @vanshueth</span>
-            <span className="font-mono text-xs text-[#4A5A72]">·</span>
+            <span className="font-mono text-sm text-[#EEFF00] drop-shadow-[0_0_8px_#EEFF00]">·</span>
+            <span className="font-mono text-sm text-[#EEFF00] drop-shadow-[0_0_8px_#EEFF00]">Built by vanshueth</span>
+            <span className="font-mono text-sm text-[#EEFF00] drop-shadow-[0_0_8px_#EEFF00]">·</span>
             {[
               { label: "Twitter", href: "https://x.com/vanshuETH" },
               { label: "Github", href: "https://github.com/vanshueth/redacted" },
@@ -634,7 +634,7 @@ export default function Home() {
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-xs text-[#4A5A72] hover:text-[#00FFB2] transition-colors"
+                className="font-mono text-sm text-[#EEFF00] drop-shadow-[0_0_8px_#EEFF00] hover:text-white hover:drop-shadow-none transition-all"
               >
                 {label}
               </a>

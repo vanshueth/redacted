@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useAccount } from "wagmi";
 import { Lock, FileText, Key, Users, Settings } from "lucide-react";
 import { CoFHEBadge } from "@/components/ui/Badges";
@@ -19,6 +19,8 @@ export function VaultSidebar() {
   const { address } = useAccount();
   const { isCofheConnected } = useCofhe();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const urlTab = searchParams.get("tab");
 
   const short = address
     ? `${address.slice(0, 6)}...${address.slice(-4)}`
@@ -49,7 +51,8 @@ export function VaultSidebar() {
       {/* Navigation */}
       <nav className="flex-1 px-3 py-4 space-y-0.5">
         {NAV.map(({ label, href, icon: Icon }) => {
-          const active = pathname === href || (href === "/vault" && pathname === "/vault");
+          const hrefTab = new URL(href, "http://x").searchParams.get("tab");
+          const active = pathname === "/vault" && hrefTab === urlTab;
           return (
             <Link
               key={label}

@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 import { useAccount, usePublicClient, useWalletClient } from "wagmi";
 import { useVaultStore } from "@/lib/store";
+import type { CofheClient } from "@cofhe/sdk";
 
-let _cofheClient: import("@cofhe/sdk").CofheClient | null = null;
+let _cofheClient: CofheClient | null = null;
 
 async function getOrCreateCofheClient() {
   if (_cofheClient) return _cofheClient;
@@ -13,6 +14,8 @@ async function getOrCreateCofheClient() {
   _cofheClient = createCofheClient(createCofheConfig({ supportedChains: [sepolia] }));
   return _cofheClient;
 }
+
+const noopSubscribe = () => () => {};
 
 export function useCofhe() {
   const { isConnected } = useAccount();
@@ -26,10 +29,18 @@ export function useCofhe() {
     connectingRef.current = true;
 
     getOrCreateCofheClient()
-      .then((client) => client.connect(publicClient as never, walletClient as never).then(() => setCofheClient(client)))
+      .then((client) =>
+        client.connect(publicClient as never, walletClient as never).then(() => setCofheClient(client))
+      )
       .catch(console.error)
       .finally(() => { connectingRef.current = false; });
   }, [isConnected, publicClient, walletClient, setCofheClient]);
 
-  return { isCofheConnected: cofheClient !== null && (_cofheClient?.connected ?? false) };
+  const fheConnected = useSyncExternalStore(
+    cofheClient ? (cb) => cofheClient.subscribe(cb as never) : noopSubscribe,
+    () => cofheClient?.connected ?? false,
+    () => false,
+  );
+
+  return { isCofheConnected: fheConnected };
 }
