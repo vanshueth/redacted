@@ -1,23 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  serverExternalPackages: [
-    "@cofhe/sdk",
-    "hardhat",
-    "@nomicfoundation/hardhat-toolbox",
-    "@nomicfoundation/hardhat-toolbox-viem",
-    "@nomicfoundation/hardhat-ignition",
-    "@nomicfoundation/hardhat-ignition-viem",
-    "solc",
-  ],
-  webpack: (config) => {
-    config.externals = [
-      ...(Array.isArray(config.externals) ? config.externals : []),
-      "pino-pretty",
-      "lokijs",
-      "encoding",
-    ];
-    return config;
+  output: "export",
+  experimental: {
+    optimizePackageImports: [
+      "framer-motion",
+      "@rainbow-me/rainbowkit",
+      "wagmi",
+      "viem",
+      "@walletconnect/ethereum-provider",
+    ],
   },
 };
 
