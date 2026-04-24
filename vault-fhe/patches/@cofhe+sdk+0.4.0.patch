@@ -1,0 +1,54 @@
+diff --git a/node_modules/@cofhe/sdk/dist/chunk-NWDKXBIP.js b/node_modules/@cofhe/sdk/dist/chunk-NWDKXBIP.js
+index abfad61..2e79e4b 100644
+--- a/node_modules/@cofhe/sdk/dist/chunk-NWDKXBIP.js
++++ b/node_modules/@cofhe/sdk/dist/chunk-NWDKXBIP.js
+@@ -1,5 +1,6 @@
+ import { isAddress, getAddress, zeroAddress, isHex, keccak256, toHex, parseAbi, BaseError, ContractFunctionRevertedError, decodeErrorResult } from 'viem';
+-import * as nacl from 'tweetnacl';
++import _nacl_ns from 'tweetnacl';
++const nacl = _nacl_ns.default ?? _nacl_ns;
+ import { z } from 'zod';
+ import { createStore } from 'zustand/vanilla';
+ import { persist } from 'zustand/middleware';
+diff --git a/node_modules/@cofhe/sdk/dist/web.cjs b/node_modules/@cofhe/sdk/dist/web.cjs
+index 92cb4da..55611e5 100644
+--- a/node_modules/@cofhe/sdk/dist/web.cjs
++++ b/node_modules/@cofhe/sdk/dist/web.cjs
+@@ -4135,10 +4135,12 @@ var ZkProveWorkerManager = class {
+           }
+         };
+         this.worker.onerror = (error) => {
+-          console.error("[Worker Manager] Worker error event:", error);
+-          console.error("[Worker Manager] Error message:", error.message);
+-          console.error("[Worker Manager] Error filename:", error.filename);
+-          console.error("[Worker Manager] Error lineno:", error.lineno);
++          if (error && (error.message || error.filename)) {
++            console.error("[Worker Manager] Worker error event:", error);
++            console.error("[Worker Manager] Error message:", error.message);
++            console.error("[Worker Manager] Error filename:", error.filename);
++            console.error("[Worker Manager] Error lineno:", error.lineno);
++          }
+           if (!this.workerReady) {
+             reject(new Error(`Worker failed to initialize: ${error.message || "Unknown error"}`));
+           }
+diff --git a/node_modules/@cofhe/sdk/dist/web.js b/node_modules/@cofhe/sdk/dist/web.js
+index f0c5497..e206dd6 100644
+--- a/node_modules/@cofhe/sdk/dist/web.js
++++ b/node_modules/@cofhe/sdk/dist/web.js
+@@ -85,10 +85,12 @@ var ZkProveWorkerManager = class {
+           }
+         };
+         this.worker.onerror = (error) => {
+-          console.error("[Worker Manager] Worker error event:", error);
+-          console.error("[Worker Manager] Error message:", error.message);
+-          console.error("[Worker Manager] Error filename:", error.filename);
+-          console.error("[Worker Manager] Error lineno:", error.lineno);
++          if (error && (error.message || error.filename)) {
++            console.error("[Worker Manager] Worker error event:", error);
++            console.error("[Worker Manager] Error message:", error.message);
++            console.error("[Worker Manager] Error filename:", error.filename);
++            console.error("[Worker Manager] Error lineno:", error.lineno);
++          }
+           if (!this.workerReady) {
+             reject(new Error(`Worker failed to initialize: ${error.message || "Unknown error"}`));
+           }

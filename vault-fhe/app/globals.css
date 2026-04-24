@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0d14;
+  --foreground: #e8eaf0;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(124,58,237,0.3); border-radius: 3px; }
+
+/* Shared input style used in modals */
+.input {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 0.75rem;
+  padding: 0.625rem 0.75rem 0.625rem 2.25rem;
+  color: white;
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.input:focus { border-color: rgba(124,58,237,0.5); }
+.input::placeholder { color: rgba(255,255,255,0.2); }
+
+/* RainbowKit accent override */
+[data-rk] {
+  --rk-colors-accentColor: #7c3aed !important;
+  --rk-colors-accentColorForeground: white !important;
+}
