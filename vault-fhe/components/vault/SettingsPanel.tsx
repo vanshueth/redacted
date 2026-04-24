@@ -1,6 +1,7 @@
 "use client";
 
 import { useAccount, useDisconnect, useBalance, useChainId } from "wagmi";
+import { formatUnits } from "viem";
 import { useCofhe } from "@/hooks/useCofhe";
 import { useVaultStore } from "@/lib/store";
 import { CONTRACT_ADDRESS } from "@/lib/constants";
@@ -77,7 +78,7 @@ export function SettingsPanel() {
             label="Balance"
             value={
               balance
-                ? `${parseFloat(balance.formatted).toFixed(4)} ${balance.symbol}`
+                ? `${parseFloat(formatUnits(balance.value, balance.decimals)).toFixed(4)} ${balance.symbol}`
                 : "—"
             }
           />
