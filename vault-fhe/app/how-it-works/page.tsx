@@ -11,31 +11,31 @@ const COMPARISON = [
     feature: "Storage location",
     lastpass: "Company servers",
     metamask: "Local device",
-    redacted: "Onchain (FHE)",
+    vaultx: "Onchain (FHE)",
   },
   {
     feature: "Encryption",
     lastpass: "AES-256",
     metamask: "AES-256",
-    redacted: "FHE ciphertext",
+    vaultx: "FHE ciphertext",
   },
   {
     feature: "Who can decrypt",
     lastpass: "The company",
     metamask: "You (device)",
-    redacted: "You (wallet)",
+    vaultx: "You (wallet)",
   },
   {
     feature: "Breach risk",
     lastpass: "High",
     metamask: "Medium",
-    redacted: "Zero (no server)",
+    vaultx: "Zero (no server)",
   },
   {
     feature: "Onchain verifiable",
     lastpass: "No",
     metamask: "No",
-    redacted: "Yes",
+    vaultx: "Yes",
   },
 ];
 
@@ -262,11 +262,11 @@ export default function HowItWorksPage() {
               <thead>
                 <tr className="border-b border-[rgba(0,255,178,0.1)]">
                   <th className="text-left font-mono text-[9px] text-[#4A5A72] tracking-[0.3em] uppercase px-4 py-3" />
-                  {["LastPass", "MetaMask Vault", "Redacted"].map((h) => (
+                  {["LastPass", "MetaMask Vault", "VaultX"].map((h) => (
                     <th
                       key={h}
                       className={`text-left font-mono text-[9px] tracking-[0.2em] uppercase px-4 py-3 ${
-                        h === "Redacted"
+                        h === "VaultX"
                           ? "text-[#00FFB2]"
                           : "text-[#4A5A72]"
                       }`}
@@ -292,7 +292,7 @@ export default function HowItWorksPage() {
                       {row.metamask}
                     </td>
                     <td className="font-mono text-xs text-[#00FFB2] px-4 py-3 font-bold">
-                      {row.redacted}
+                      {row.vaultx}
                     </td>
                   </tr>
                 ))}

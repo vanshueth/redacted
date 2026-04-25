@@ -3,7 +3,7 @@ import "./globals.css";
 import { ClientProviders } from "./client-providers";
 
 export const metadata: Metadata = {
-  title: "REDACTED — Onchain FHE Vault",
+  title: "VaultX — Onchain FHE Vault",
   description:
     "Your data. Encrypted. Onchain. Unseeable. Not even validators can read it. Powered by Fhenix coFHE.",
 };

@@ -109,7 +109,7 @@ const STEPS = [
   },
 ];
 
-const CODE = `// Redacted vault contract
+const CODE = `// VaultX vault contract
 function storeSecret(
   euint256 encryptedData,
   bytes32  label
@@ -207,7 +207,7 @@ export default function Home() {
           {/* Logo */}
           <Link href="/" className="select-none">
             <span className="inline-block bg-black text-white font-mono text-sm font-bold tracking-[0.12em] px-3 py-1.5 uppercase">
-              [REDACTED]
+              [VaultX]
             </span>
           </Link>
 
@@ -309,7 +309,7 @@ export default function Home() {
                 transition={{ delay: 0.15 }}
                 className="text-[#4A5A72] text-base leading-relaxed mb-3 max-w-lg"
               >
-                Redacted uses Fhenix coFHE to store your vault as FHE ciphertext.
+                VaultX uses Fhenix coFHE to store your vault as FHE ciphertext.
                 The blockchain witnesses only encrypted payloads.
               </motion.p>
               <motion.p
@@ -591,7 +591,7 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <p className="font-mono text-[10px] text-[#4A5A72] tracking-[0.4em] uppercase mb-4">
-              Redacted
+              VaultX
             </p>
             <h2 className="font-['Syne'] text-5xl sm:text-6xl font-extrabold text-[#E8EDF5] tracking-[-0.03em] mb-4">
               Own your secrets.
@@ -602,7 +602,7 @@ export default function Home() {
               No server. No trust. No exposure. Just cryptography.
             </p>
             <Link href="/vault">
-              <AngularButton size="lg">Launch Redacted →</AngularButton>
+              <AngularButton size="lg">Launch VaultX →</AngularButton>
             </Link>
           </motion.div>
         </div>
@@ -613,7 +613,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <span className="inline-block bg-black text-white font-mono text-xs font-bold tracking-[0.12em] px-2.5 py-1 uppercase">
-              [REDACTED]
+              [VaultX]
             </span>
             <span className="font-mono text-xs text-[#4A5A72]">© 2026</span>
           </div>
