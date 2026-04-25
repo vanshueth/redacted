@@ -2,7 +2,7 @@
 
 > **Onchain password manager powered by Fhenix coFHE — your data encrypted, onchain, unseeable.**
 
-redacted stores your passwords directly on Ethereum — encrypted byte-by-byte using Fully Homomorphic Encryption (FHE). No server. No master password. No plaintext ever touches the chain. Only you and the Fhenix threshold network can decrypt your data, authorized by your wallet signature.
+VaultX stores your passwords directly on Ethereum — encrypted byte-by-byte using Fully Homomorphic Encryption (FHE). No server. No master password. No plaintext ever touches the chain. Only you and the Fhenix threshold network can decrypt your data, authorized by your wallet signature.
 
 ---
 
@@ -57,7 +57,7 @@ Every password character is encrypted as an individual `euint8` (encrypted uint8
 ## Project Structure
 
 ```
-redacted/
+VaultX/
 ├── vault-fhe/                  # Primary app (Next.js)
 │   ├── app/                    # Next.js App Router pages
 │   │   ├── page.tsx            # Main dashboard
@@ -91,7 +91,7 @@ redacted/
 
 ## Smart Contract
 
-`PasswordVault.sol` is the core of redacted.
+`PasswordVault.sol` is the core of VaultX.
 
 ### Data Model
 
@@ -130,8 +130,8 @@ Only `msg.sender` can read their own entries — enforced at the contract level 
 ### 1. Clone & Install
 
 ```bash
-git clone https://github.com/vanshueth/redacted.git
-cd redacted/vault-fhe
+git clone https://github.com/vanshueth/VaultX.git
+cd VaultX/vault-fhe
 npm install
 ```
 
