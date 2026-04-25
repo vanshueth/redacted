@@ -1,4 +1,4 @@
-# redacted 🔐
+# VaultX 🔐
 
 > **Onchain password manager powered by Fhenix coFHE — your data encrypted, onchain, unseeable.**
 
